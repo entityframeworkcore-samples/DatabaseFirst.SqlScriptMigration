@@ -60,3 +60,10 @@ It will be create a folder "Migrations" and the following files:
 * CreateDatabase.cs
 * CreateDatabase.Designer.cs
 * EfDbContextModelSnapshot.cs
+
+# 5 Update Database
+Execute the powershell script  "5.UpdateDatabase.ps1" which will execute the bellow command in "\DAL\DAL.Jecaestevez.csproj"
+> dotnet ef database update --startup-project ..\ConsoleApp
+
+Using Package Manager Console select the DAL.JecaestevezApp.csproj and execute 
+> PM> update-database –verbose
