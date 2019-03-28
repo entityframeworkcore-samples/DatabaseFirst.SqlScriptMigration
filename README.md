@@ -93,3 +93,27 @@ Execute the powershell script  "5.UpdateDatabase.ps1" which will execute the bel
 
 Using Package Manager Console select the DAL.JecaestevezApp.csproj and execute 
 > PM> update-database –verbose
+
+# 6 Add new migration to modified the created table
+
+It's possible do the same step using the Package Manager Console in Visual Studio, selecting the DAL.JecaestevezApp.csproj and execute 
+> PM > add-migration AlterItemsTable_AddColumn
+
+Modify new migration to add a sql code to alter the existent Items table to add a new column "IsEnable" as we can see here bellow 
+```
+    public partial class AlterItemsTable_AddColumn : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.Sql(@"ALTER TABLE [dbo].[Items]  ADD IsEnable bit");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.Sql(@"ALTER TABLE [dbo].[Items]  DROP IsEnable");
+        }
+    }
+```
+# 5 Update Database
+Using Package Manager Console select the DAL.JecaestevezApp.csproj and execute 
+> PM> update-database 
