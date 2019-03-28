@@ -8,7 +8,7 @@ namespace DAL.JecaestevezApp
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //TODO Extract connection string to a secret
-            optionsBuilder.UseSqlServer(@"Server=.\;Database=EFCodeFirstDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=.\;Database=EFDatabaseFirstDB;Trusted_Connection=True;MultipleActiveResultSets=true");
         }        
     }
 }
