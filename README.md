@@ -61,6 +61,32 @@ It will be create a folder "Migrations" and the following files:
 * CreateDatabase.Designer.cs
 * EfDbContextModelSnapshot.cs
 
+Modify the file "CreateDatabase.cs" to add the new table like this:
+```
+    public partial class CreateDatabase : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.Sql(@"
+                CREATE TABLE [dbo].[Items](
+	                [id] [int] IDENTITY(1,1) NOT NULL,
+	                [Name] [nvarchar](max) NULL,
+	                [Description] [nvarchar](max) NULL,
+	                [Expiration] [datetime2](7) NOT NULL,
+                 CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED 
+                (
+	                [id] ASC
+                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+            ");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.Sql(@"DROP TABLE [dbo].[Items]");
+        }
+    }
+```
 # 5 Update Database
 Execute the powershell script  "5.UpdateDatabase.ps1" which will execute the bellow command in "\DAL\DAL.Jecaestevez.csproj"
 > dotnet ef database update --startup-project ..\ConsoleApp
